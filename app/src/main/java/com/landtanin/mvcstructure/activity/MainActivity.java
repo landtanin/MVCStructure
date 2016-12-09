@@ -58,13 +58,14 @@ public class MainActivity extends AppCompatActivity {
                 if (fragment instanceof SecondFragment == false) {
 
                     getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(
+                                    R.anim.from_right, R.anim.to_left,
+                                    R.anim.from_left, R.anim.to_right)
                             .replace(R.id.contentContainer, SecondFragment.newInstance())
                             .addToBackStack(null)
                             .commit();
 
-
                 }
-
 
                 Toast.makeText(this, "Second Fragment", Toast.LENGTH_SHORT).show();
                 return true;
