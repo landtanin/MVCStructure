@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.landtanin.mvcstructure.R;
 
@@ -13,6 +14,8 @@ import com.landtanin.mvcstructure.R;
  * Created by nuuneoi on 11/16/2014.
  */
 public class SecondFragment extends Fragment {
+
+    private Button btnOk;
 
     public SecondFragment() {
         super();
@@ -35,6 +38,17 @@ public class SecondFragment extends Fragment {
 
     private void initInstances(View rootView) {
         // Init 'View' instance(s) with rootView.findViewById here
+
+        btnOk = (Button) rootView.findViewById(R.id.btnOk);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // we get the FragmentManager of MainActivity which is holding this fragment
+                getFragmentManager().popBackStack();
+
+            }
+        });
     }
 
     @Override
