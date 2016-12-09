@@ -2,6 +2,7 @@ package com.landtanin.mvcstructure.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import com.landtanin.mvcstructure.R;
 import com.landtanin.mvcstructure.fragment.MainFragment;
+import com.landtanin.mvcstructure.fragment.SecondFragment;
 import com.landtanin.mvcstructure.util.ScreenUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,12 +48,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.action_second_fragment) {
+        switch (item.getItemId()) {
 
-            Toast.makeText(this, "Second Fragment", Toast.LENGTH_SHORT).show();
+            case R.id.action_second_fragment:
 
-            // Handled
-            return true;
+                Fragment fragment = getSupportFragmentManager()
+                        .findFragmentById(R.id.contentContainer);
+
+                if (fragment instanceof SecondFragment == false) {
+
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.contentContainer, SecondFragment.newInstance())
+                            .addToBackStack(null)
+                            .commit();
+
+
+                }
+
+
+                Toast.makeText(this, "Second Fragment", Toast.LENGTH_SHORT).show();
+                return true;
+
         }
 
         // Not handled
