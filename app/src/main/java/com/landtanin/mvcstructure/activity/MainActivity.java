@@ -35,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
                             "MainFragment")
                     .commit();
 
+            SecondFragment secondFragment = SecondFragment.newInstance();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.contentContainer,
+                            secondFragment,
+                            "SecondFragment")
+                    .detach(secondFragment)
+                    .commit();
+
         }
 
     }
@@ -50,7 +58,37 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
 
-            case R.id.action_second_fragment:
+            case R.id.action_first_tab:{
+
+                MainFragment mainFragment = (MainFragment)
+                        getSupportFragmentManager().findFragmentByTag("MainFragment");
+                SecondFragment secondFragment = (SecondFragment)
+                        getSupportFragmentManager().findFragmentByTag("SecondFragment");
+                getSupportFragmentManager().beginTransaction()
+                        .attach(mainFragment)
+                        .detach(secondFragment)
+                        .commit();
+
+                return true;
+            }
+
+
+            case R.id.action_second_tab:{
+
+                MainFragment mainFragment = (MainFragment)
+                        getSupportFragmentManager().findFragmentByTag("MainFragment");
+                SecondFragment secondFragment = (SecondFragment)
+                        getSupportFragmentManager().findFragmentByTag("SecondFragment");
+                getSupportFragmentManager().beginTransaction()
+                        .attach(secondFragment)
+                        .detach(mainFragment)
+                        .commit();
+
+                return true;
+            }
+
+
+            case R.id.action_second_fragment: {
 
                 Fragment fragment = getSupportFragmentManager()
                         .findFragmentById(R.id.contentContainer);
@@ -65,10 +103,12 @@ public class MainActivity extends AppCompatActivity {
                             .addToBackStack(null)
                             .commit();
 
+
                 }
 
                 Toast.makeText(this, "Second Fragment", Toast.LENGTH_SHORT).show();
                 return true;
+            }
 
         }
 
@@ -84,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
             MainFragment fragment = (MainFragment)
                     getSupportFragmentManager().findFragmentByTag("MainFragment");
-            fragment.setHelloText("Woooo");
+            fragment.setHelloText("Woooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\nWoooo\n");
 
         }
     }
